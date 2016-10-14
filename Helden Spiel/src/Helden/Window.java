@@ -12,8 +12,8 @@ import java.awt.GridLayout;
 
 public class Window
 {
-	Spiel spiel = new Spiel();
-	Canvas canvas = new Canvas(spiel.kampfregel);
+	Spiel spiel = new Spiel(this);
+	Canvas canvas = new Canvas(spiel.getKampfregel());
 	private JFrame frame;
 
 	/**
@@ -55,14 +55,13 @@ public class Window
 		panel.add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 1, 0, 0));
 		
-		JButton btnWaffe = new JButton("Waffe?");
-		panel_1.add(btnWaffe);
 		
 		JButton btnStart = new JButton("Angriff!");
 		panel_1.add(btnStart);
 		btnStart.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) 
 			{
+				canvas.setText("");
 				spiel.kampfregel.kampf();
 				canvas.repaint();
 			}
@@ -70,5 +69,12 @@ public class Window
 		
 		panel.add(canvas);
 	}
+	
+	public Canvas getCanvas() {
+		return canvas;
+	}
 
+	public void setCanvas(Canvas canvas) {
+		this.canvas = canvas;
+	}
 }

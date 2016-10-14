@@ -10,6 +10,7 @@ import javax.swing.JPanel;
 
 public class Canvas extends JPanel 
 { 
+	String text = "";
 	private static final long serialVersionUID = 1L;
 	
 	Kampfregel kampfregel;
@@ -31,7 +32,7 @@ public class Canvas extends JPanel
 	@Override
 	public Dimension getPreferredSize()
 	{
-		return new Dimension(200, 200);
+		return new Dimension(400, 400);
 	}
 	
 	@Override
@@ -42,7 +43,7 @@ public class Canvas extends JPanel
 		
 	//Setze Hintergrundfarbe
 		g.setColor(new Color(0,0,255));
-		g.fillRect(0, 0, 200, 200);
+		g.fillRect(0, 0, getWidth(), getHeight());
 		
 	//Setze Held Farbe/Image
 		g.setColor(new Color(255, 0, 0));
@@ -57,6 +58,9 @@ public class Canvas extends JPanel
 	//Setze Monster Farbe/Image
 		g.drawImage(monster, 140, 100, 50, 50, null);
 		
+		g.drawString(text, 10, 30);
+		
+		
 		
 		if(kampfregel.held.getLebenspunkte()<=0)
 		{
@@ -67,6 +71,14 @@ public class Canvas extends JPanel
 		{
 			g.drawString("Das Monter hat verloren", 15,15);
 		}
+	}
+
+	public String getText() {
+		return text;
+	}
+
+	public void setText(String text) {
+		this.text = text;
 	}
 	
 }
