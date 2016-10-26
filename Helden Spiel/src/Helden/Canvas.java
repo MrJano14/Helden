@@ -38,8 +38,16 @@ public class Canvas extends JPanel
 	@Override
 	public void paintComponent(Graphics g)
 	{
-		int factor = 50/(getWidth()/4);
-		int width = 50*factor;
+		float x = getWidth();
+		float y = getHeight();
+
+		int average = (getWidth()+getHeight())/2;
+		int size = average/4;
+		float xFactor = x/200;
+		float yFactor = y/200;
+		
+	//Setze Schriftgröße
+		setFont(getFont().deriveFont((float) (average*0.03)));
 		
 	//Setze Hintergrundfarbe
 		g.setColor(new Color(0,0,255));
@@ -47,16 +55,16 @@ public class Canvas extends JPanel
 		
 	//Setze Held Farbe/Image
 		g.setColor(new Color(255, 0, 0));
-		g.drawImage(held, 10, 100, 50, 50, null);
+ 		g.drawImage(held, (int)(10*xFactor), (int)(100*yFactor), size, size, null);
 		
 	//Setze Held Leben
-		g.drawString(""+kampfregel.held.getLebenspunkte(), 60, 100);
+		g.drawString(""+kampfregel.held.getLebenspunkte(), (int)(60*xFactor), (int)(100*yFactor));
 		
 	//Setze Monster Leben
-		g.drawString(""+kampfregel.monster.getLebenspunkte(), 140, 100);
+		g.drawString(""+kampfregel.monster.getLebenspunkte(), (int)(140*xFactor), (int)(100*yFactor));
 		
 	//Setze Monster Farbe/Image
-		g.drawImage(monster, 140, 100, 50, 50, null);
+		g.drawImage(monster, (int)(140*xFactor), (int)(100*yFactor), size, size, null);
 		
 		g.drawString(text, 10, 30);
 		
@@ -64,12 +72,12 @@ public class Canvas extends JPanel
 		
 		if(kampfregel.held.getLebenspunkte()<=0)
 		{
-			g.drawString("Der Held hat verloren", 15,15);
+			g.drawString("Der Held hat verloren", (int)(15*xFactor),(int)(15*yFactor));
 		}
 		
 		if(kampfregel.monster.lebenspunkte<=0)
 		{
-			g.drawString("Das Monter hat verloren", 15,15);
+			g.drawString("Das Monter hat verloren", (int)(15*xFactor),(int)(15*yFactor));
 		}
 	}
 
